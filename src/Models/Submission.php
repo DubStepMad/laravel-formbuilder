@@ -21,7 +21,7 @@ class Submission extends Model
 	 *
 	 * @var string
 	 */
-	protected $table = 'forms_submissions';
+	protected $table = 'form_submissions';
 
     /**
      * The attributes that are not assignable.

@@ -1,33 +1,20 @@
 {
     "name": "dubstepmad/formbuilder",
-    "description": ":description",
-    "license": "license",
+    "description": "Laravel Package for Creating a Drag-and-Drop Form Builder Using JQuery Form Builder",
     "authors": [
         {
-            "name": "author name",
-            "email": "author email",
-            "homepage": "author homepage"
+            "name": "Connor Nee",
+			"email": "dubstepmad@dubstepmad.com",
         }
     ],
-    "homepage": "https://github.com/dubstepmad/formbuilder",
+    "homepage": "https://github.com/dubstepmad/laravel-formbuilder",
     "keywords": ["Laravel", "FormBuilder"],
     "require": {
-        "illuminate/support": "~5"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~7.0",
-        "mockery/mockery": "^1.1",
-        "orchestra/testbench": "~3.0",
-        "sempro/phpunit-pretty-print": "^1.0"
+        
     },
     "autoload": {
         "psr-4": {
             "dubstepmad\\FormBuilder\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "dubstepmad\\FormBuilder\\Tests\\": "tests"
         }
     },
     "extra": {

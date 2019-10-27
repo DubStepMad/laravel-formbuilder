@@ -9,6 +9,7 @@ namespace dubstepmad\FormBuilder\Middlewares;
 
 use Closure;
 use dubstepmad\FormBuilder\Models\Form;
+use Illuminate\Support\MessageBag;
 
 class PublicFormAccess
 {
