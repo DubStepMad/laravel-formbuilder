@@ -4,13 +4,13 @@
     "authors": [
         {
             "name": "Connor Nee",
-			"email": "dubstepmad@dubstepmad.com",
+			"email": "dubstepmad@dubstepmad.com"
         }
     ],
     "homepage": "https://github.com/dubstepmad/laravel-formbuilder",
     "keywords": ["Laravel", "FormBuilder"],
     "require": {
-        
+        "spatie/laravel-permission": "^2.37"
     },
     "autoload": {
         "psr-4": {
