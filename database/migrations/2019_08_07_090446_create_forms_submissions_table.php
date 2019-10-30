@@ -18,6 +18,8 @@ class CreateFormsSubmissionsTable extends Migration
             $table->unsignedInteger('form_id');
             $table->BigInteger('user_id')->unsigned()->index();
             $table->text('content');
+			$table->string('status')->nullable();
+			$table->string('comments')->nullable();
             $table->timestamps();
             $table->foreign('form_id')->references('id')->on('forms')->onDelete('CASCADE');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
