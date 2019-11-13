@@ -47,17 +47,17 @@ class RenderFormController extends Controller
 
         foreach($submissions as $app){
             if($app->form_id == $form->id){
-                if($app->status != "Accepted" || $app->status != "Rejected"){
+                if($app->status === "Accepted" || $app->status === "Rejected"){
+                    $pageTitle = "{$form->name}";
+
+                    return view('formbuilder::render.index', compact('form', 'pageTitle'));
+                }else{
                     $errors->add('app_check', 'You already have a '.$form->name.' submitted!');
 
                     return redirect('recruitment')->withErrors($errors);
                 }
             }
         }
-
-        $pageTitle = "{$form->name}";
-
-        return view('formbuilder::render.index', compact('form', 'pageTitle'));
     }
 
     /**
