@@ -47,7 +47,7 @@ class RenderFormController extends Controller
 
         foreach($submissions as $app){
             if($app->form_id == $form->id){
-                if($app->status != "Accepted" || $app->status != "Declined"){
+                if($app->status != "Accepted" || $app->status != "Rejected"){
                     $errors->add('app_check', 'You already have a '.$form->name.' submitted!');
 
                     return redirect('recruitment')->withErrors($errors);
