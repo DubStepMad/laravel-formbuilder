@@ -58,6 +58,10 @@ class RenderFormController extends Controller
                 }
             }
         }
+        
+        $pageTitle = "{$form->name}";
+
+        return view('formbuilder::render.index', compact('form', 'pageTitle'));
     }
 
     /**
