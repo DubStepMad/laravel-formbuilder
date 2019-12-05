@@ -73,12 +73,26 @@ class RenderFormController extends Controller
      */
     public function submit(Request $request, $identifier)
     {
+        // Error message bag variable
+        $errors = new MessageBag();
+
         $form = Form::where('identifier', $identifier)->firstOrFail();
 
         DB::beginTransaction();
 
         try {
             $input = $request->except('_token');
+
+            foreach ($input as $key => $field) {
+                if(empty($field) && $field == null){
+
+                    dd($field);
+
+                    $errors->add('field_check', 'You have submmited an blank application!');
+
+                    return redirect('recruitment')->withErrors($errors);
+                }
+            }
 
             // check if files were uploaded and process them
             $uploadedFiles = $request->allFiles();
