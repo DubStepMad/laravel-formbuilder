@@ -40,11 +40,22 @@ class RenderFormController extends Controller
     {
         // Error message bag variable
         $errors = new MessageBag();
+		
+		// Error message bag variable
+        $errors = new MessageBag();
 
+        // Checks if the user is blacklisted
+        if(Auth::user()->recruitment_blacklist == true){
+            // Blacklist check custom Error
+            $errors->add('blacklist_check', 'You are blacklisted from using our Recruitment system, please use the Feedback system to appeal.');
+
+            return redirect('recruitment')->withErrors($errors);
+        }
+		
         $submissions = Submission::getForUser(Auth::user());
 
         $form = Form::where('identifier', $identifier)->firstOrFail();
-
+	
         foreach($submissions as $app){
             if($app->form_id == $form->id){
                 if($app->status === "Accepted" || $app->status === "Rejected"){
