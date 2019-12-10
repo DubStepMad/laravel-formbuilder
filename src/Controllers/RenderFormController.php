@@ -96,9 +96,6 @@ class RenderFormController extends Controller
 
             foreach ($input as $key => $field) {
                 if(empty($field) && $field == null){
-
-                    dd($field);
-
                     $errors->add('field_check', 'You have submmited an blank application!');
 
                     return redirect('recruitment')->withErrors($errors);
