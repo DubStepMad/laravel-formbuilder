@@ -40,7 +40,7 @@ class RenderFormController extends Controller
     {
         // Error message bag variable
         $errors = new MessageBag();
-		
+
 		// Error message bag variable
         $errors = new MessageBag();
 
@@ -51,11 +51,11 @@ class RenderFormController extends Controller
 
             return redirect('recruitment')->withErrors($errors);
         }
-		
+
         $submissions = Submission::getForUser(Auth::user());
 
         $form = Form::where('identifier', $identifier)->firstOrFail();
-	
+
         foreach($submissions as $app){
             if($app->form_id == $form->id){
                 if($app->status === "Accepted" || $app->status === "Rejected"){
@@ -94,35 +94,41 @@ class RenderFormController extends Controller
         try {
             $input = $request->except('_token');
 
+            $emptyCheck = false;
+
             foreach ($input as $key => $field) {
                 if(empty($field) && $field == null){
-                    $errors->add('field_check', 'You have submmited an blank application!');
-
-                    return redirect('recruitment')->withErrors($errors);
+                    $emptyCheck = true;
                 }
             }
 
-            // check if files were uploaded and process them
-            $uploadedFiles = $request->allFiles();
-            foreach ($uploadedFiles as $key => $file) {
-                // store the file and set it's path to the value of the key holding it
-                if ($file->isValid()) {
-                    $input[$key] = $file->store('fb_uploads', 'public');
+            if($emptyCheck == false) {
+                // check if files were uploaded and process them
+                $uploadedFiles = $request->allFiles();
+                foreach ($uploadedFiles as $key => $file) {
+                    // store the file and set it's path to the value of the key holding it
+                    if ($file->isValid()) {
+                        $input[$key] = $file->store('fb_uploads', 'public');
+                    }
                 }
-            }
 
-            $user_id = auth()->user()->id ?? null;
+                $user_id = auth()->user()->id ?? null;
 
-            $form->submissions()->create([
-                'user_id' => $user_id,
-                'content' => $input,
-            ]);
+                $form->submissions()->create([
+                    'user_id' => $user_id,
+                    'content' => $input,
+                ]);
 
-            DB::commit();
+                DB::commit();
 
-            return redirect()
+                return redirect()
                     ->route('formbuilder::form.feedback', $identifier)
                     ->with('success', 'Form successfully submitted.');
+            }else{
+                $errors->add('field_check', 'You have submmited an blank application!');
+
+                return redirect('recruitment')->withErrors($errors);
+            }
         } catch (Throwable $e) {
             info($e);
 
