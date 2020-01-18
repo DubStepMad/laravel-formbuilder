@@ -10,7 +10,7 @@
     "homepage": "https://github.com/dubstepmad/laravel-formbuilder",
     "keywords": ["Laravel", "FormBuilder"],
     "require": {
-        "spatie/laravel-permission": "^2.37"
+        "spatie/laravel-permission": "^3.6"
     },
     "autoload": {
         "psr-4": {
