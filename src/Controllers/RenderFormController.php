@@ -97,7 +97,7 @@ class RenderFormController extends Controller
             $emptyCheck = false;
 
             foreach ($input as $key => $field) {
-                if(empty($field) && $field == null){
+                if(blank($field)){
                     $emptyCheck = true;
                 }
             }
