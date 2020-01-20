@@ -27,9 +27,9 @@ return [
      * The stack section in the layout file to output css content
      */
     'layout_css_stack' => 'styles',
-
-    /**
-     * The class that will provide the roles we will display on form create or edit pages?
+	
+	/**
+     * Any custom middlewares in which are needed to limit a user submitting a response.
      */
-    'roles_provider' => dubstepmad\FormBuilder\Services\RolesProvider::class,
+    'middleware' => '',
 ];
