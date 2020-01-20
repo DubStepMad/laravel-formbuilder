@@ -101,6 +101,12 @@ class RenderFormController extends Controller
                     $emptyCheck = true;
                 }
             }
+			
+			if($input == '[]'){
+				$errors->add('blank_check', 'You have submmited an blank application!');
+
+                return redirect('recruitment')->withErrors($errors);
+			}
 
             if($emptyCheck == false) {
                 // check if files were uploaded and process them
