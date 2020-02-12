@@ -27,7 +27,7 @@ class RenderFormController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('public-form-access');
+        $this->middleware(['auth', 'public-form-access']);
     }
 
     /**
