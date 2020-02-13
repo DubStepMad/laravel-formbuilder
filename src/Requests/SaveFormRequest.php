@@ -33,7 +33,7 @@ class SaveFormRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100',
-            'visibility' => ['required', Rule::in([Form::FORM_PUBLIC, Form::FORM_PRIVATE, Form::FORM_STAFF])],
+            'visibility' => ['required', Rule::in([Form::FORM_PUBLIC, Form::FORM_PRIVATE, Form::FORM_PRIVATE_MISC, Form::FORM_STAFF])],
             'allows_edit' => 'required|boolean',
             'form_builder_json' => 'required|json',
         ];

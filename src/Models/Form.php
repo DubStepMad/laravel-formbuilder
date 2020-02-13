@@ -17,6 +17,7 @@ class Form extends Model
 {
     const FORM_PUBLIC = "PUBLIC";
     const FORM_PRIVATE = "PRIVATE";
+    const FORM_PRIVATE_MISC = "PRIVATE MISC";
     const FORM_STAFF = "STAFF";
 
     /**
@@ -27,6 +28,7 @@ class Form extends Model
     public static $visibility_options = [
         ['id' => self::FORM_PUBLIC, 'name' => self::FORM_PUBLIC.' (available to all users)'],
         ['id' => self::FORM_PRIVATE, 'name' => self::FORM_PRIVATE.' (available to only logged in users)'],
+        ['id' => self::FORM_PRIVATE_MISC, 'name' => self::FORM_PRIVATE_MISC.' (available to only logged in users and misc)'],
         ['id' => self::FORM_STAFF, 'name' => self::FORM_STAFF.' (available to staff)'],
     ];
 
@@ -117,6 +119,16 @@ class Form extends Model
     public function isPrivate() : bool
     {
         return $this->visibility === self::FORM_PRIVATE;
+    }
+	
+	/**
+     * Check if the form has private visibility
+     *
+     * @return boolean
+     */
+    public function isPrivateMisc() : bool
+    {
+        return $this->visibility === self::FORM_PRIVATE_MISC;
     }
 
     /**
